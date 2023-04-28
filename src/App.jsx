@@ -64,8 +64,16 @@ function App() {
       </Stack>
 
       <Grid>
-        {list.map(({baslik,aciklama}) => (
-          <CardComponents aciklama = {aciklama} baslik = {baslik} />
+        {list.map(({baslik,aciklama},id) => (
+          <CardComponents 
+          aciklama = {aciklama} 
+          baslik = {baslik}
+
+          click={() => {
+            let copyList = [...list];
+            copyList.splice( id , 1 );
+            setList(copyList);
+          }} />
         ))}
       </Grid>
     </Container>
@@ -74,5 +82,3 @@ function App() {
 }
 
 export default App;
-
-let deneme = "branch";
