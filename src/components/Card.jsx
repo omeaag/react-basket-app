@@ -1,6 +1,6 @@
 import { Card, Image, Text, CloseButton, Button, Group } from '@mantine/core';
 
-const CardComponents = ({aciklama, baslik, click}) => {
+const CardComponents = ({price, product, click}) => {
     return(
         <Card className='Cards' shadow="sm" padding="lg" radius="md" withBorder>
             <Card.Section>
@@ -12,13 +12,13 @@ const CardComponents = ({aciklama, baslik, click}) => {
 
             <Group position="apart" mt="md" mb="xs">
 
-               <Text>{baslik}</Text>
+               <Text>{product}</Text>
 
                <CloseButton aria-label="Close modal" onClick={click}/>
 
             </Group>
 
-            <Text size="sm" color="dimmed">{aciklama}</Text>
+            <Text size="sm" color="dimmed">{price}</Text>
 
             <Button variant="light" color="blue" fullWidth mt="md" radius="md">
             Sepete Ekle

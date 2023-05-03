@@ -8,23 +8,23 @@ function App() {
 
   let info = [
     {
-      baslik: "birinci",
-      aciklama: "örnek paragraf 1"
+      product: "birinci",
+      price: "örnek paragraf 1"
     },
 
     {
-      baslik: "ikinci",
-      aciklama: "örnek paragraf 2"
+      product: "ikinci",
+      price: "örnek paragraf 2"
     },
 
     {
-      baslik: "üçüncü",
-      aciklama: "örnek paragraf 3"
+      product: "üçüncü",
+      price: "örnek paragraf 3"
     },
 
     {
-      baslik: "dördüncü",
-      aciklama: "örnek paragraf 4"
+      product: "dördüncü",
+      price: "örnek paragraf 4"
     }
 
   ];
@@ -43,9 +43,9 @@ function App() {
 
     copyList.push({
 
-      baslik: title,
+      product: title,
       
-      aciklama: paragraph
+      price: paragraph
 
     })
 
@@ -64,10 +64,10 @@ function App() {
       </Stack>
 
       <Grid>
-        {list.map(({baslik,aciklama},id) => (
+        {list.map(({product,price},id) => (
           <CardComponents 
-          aciklama = {aciklama} 
-          baslik = {baslik}
+          price = {price} 
+          product = {product}
 
           click={() => {
             let copyList = [...list];
