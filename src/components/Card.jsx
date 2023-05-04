@@ -1,6 +1,6 @@
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
 
-const CardComponents = ({product, price}) => {
+const CardComponents = ({product, price, addBasket}) => {
     return(
         <Card className='Cards' shadow="sm" padding="lg" radius="md" withBorder>
             <Card.Section>
@@ -18,8 +18,8 @@ const CardComponents = ({product, price}) => {
 
             <Text size="sm" color="dimmed">{price}</Text>
 
-            <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-            Sepete Ekle
+            <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={addBasket} >
+            Add
             </Button>
         </Card>
     )
