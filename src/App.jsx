@@ -36,6 +36,8 @@ function App() {
   const [filteredText, setFilteredText] = useState("");
   const [basketItems, setBasketItems] = useState([]);
 
+  //burada basketItems'den gelen product'ın karakterini küçülttük. ancak bunu inputta aradığımız metnin kendisini de küçültmemiz lazım yoksa sepete ekledğimiz ilk harfi büyük olan ürünleri göstermez.
+  
   let filtredBasket = basketItems.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
  
   const click = () => {
