@@ -4,9 +4,9 @@ const CardComponents = ({product, price, addBasket, src}) => {
     return(
         <Card className='Cards' shadow="sm" padding="lg" radius="md" withBorder>
             <Card.Section>
-            <Image
-                src={`/assets/images/${src}`}
-                width={250} height={250} alt="Norway"/>
+                <Image
+                    src={`/assets/images/${src}`}
+                    height={250} alt="Norway"/>
 
             </Card.Section>
 

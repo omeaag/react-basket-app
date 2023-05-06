@@ -1,4 +1,4 @@
-import { Container, Input, List, ThemeIcon, Textarea, Button, Stack, Grid } from '@mantine/core';
+import { Container, Input, List, ThemeIcon, Textarea, Button, Stack, SimpleGrid } from '@mantine/core';
 import { useState } from 'react';
 import { IconCircleCheck, IconCircleDashed } from '@tabler/icons-react';
 import CardComponents from './components/Card';
@@ -30,6 +30,31 @@ function App() {
       product: "Akıllı Kol Saati",
       src: "watch.jpg",
       price: "1500TL"
+    },
+
+    
+    {
+      product: "Kablosuz Mouse",
+      src: "mouse.jpg",
+      price: "900TL"
+    },
+    
+    {
+      product: "Atari",
+      src: "atari.jpg",
+      price: "1000TL"
+    },
+    
+    {
+      product: "Akıllı Telefon",
+      src: "phone.jpg",
+      price: "15000TL"
+    },
+    
+    {
+      product: "Kablosuz Kulaklık",
+      src: "headphone.jpg",
+      price: "4500TL"
     }
 
   ];
@@ -74,7 +99,7 @@ function App() {
         <Button variant="outline" radius="md" onClick={click}>Oluştur</Button>
       </Stack>
 
-      <Grid>
+      <SimpleGrid cols={3} spacing="xs" verticalSpacing="xs">
         {list.map(({product,price,src},id) => (
           <CardComponents 
           key={id} 
@@ -85,7 +110,7 @@ function App() {
             setBasketItems([...basketItems,{product}])
           }}/>
         ))}
-      </Grid>
+      </SimpleGrid>
       <Input.Wrapper label="Arama">
           <Input placeholder= 'Aradığınız ürün' value = {filteredText} onChange={(e) => setFilteredText(e.target.value)}/>
       </Input.Wrapper>
