@@ -9,22 +9,26 @@ function App() {
 
   let info = [
     {
-      product: "Laptop",
+      product: "Bisiklet",
+      src: "cycle.jpg",
       price: "25000TL"
     },
 
     {
-      product: "Xbox",
+      product: "Güneş Gözlüğü",
+      src: "glasses.jpg",
       price: "12000TL"
     },
 
     {
-      product: "Cep Telefonu",
+      product: "Spor Ayakkabı",
+      src: "shoes.jpg",
       price: "32000TL"
     },
 
     {
-      product: "Tıraş Makinesi",
+      product: "Akıllı Kol Saati",
+      src: "watch.jpg",
       price: "1500TL"
     }
 
@@ -36,7 +40,7 @@ function App() {
   const [filteredText, setFilteredText] = useState("");
   const [basketItems, setBasketItems] = useState([]);
 
-  //burada basketItems'den gelen product'ın karakterini küçülttük. ancak bunu inputta aradığımız metnin kendisini de küçültmemiz lazım yoksa sepete ekledğimiz ilk harfi büyük olan ürünleri göstermez.
+  //burada basketItems'den gelen product'ın karakterlerini küçülttük. ancak bunu inputta aradığımız metnin kendisini de küçültmemiz lazım yoksa sepete ekledğimiz ilk harfi büyük olan ürünleri göstermez.
   
   let filtredBasket = basketItems.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
  
@@ -71,8 +75,13 @@ function App() {
       </Stack>
 
       <Grid>
-        {list.map(({product,price},id) => (
-          <CardComponents key={id} price = {price} product = {product} addBasket = {() => {
+        {list.map(({product,price,src},id) => (
+          <CardComponents 
+          key={id} 
+          src = {src}
+          price = {price} 
+          product = {product} 
+          addBasket = {() => {
             setBasketItems([...basketItems,{product}])
           }}/>
         ))}
