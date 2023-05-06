@@ -44,7 +44,7 @@ function App() {
       src: "atari.jpg",
       price: "1000TL"
     },
-    
+
     {
       product: "Akıllı Telefon",
       src: "phone.jpg",
@@ -67,7 +67,7 @@ function App() {
 
   //burada basketItems'den gelen product'ın karakterlerini küçülttük. ancak bunu inputta aradığımız metnin kendisini de küçültmemiz lazım yoksa sepete ekledğimiz ilk harfi büyük olan ürünleri göstermez.
   
-  let filtredBasket = basketItems.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
+  let filtredProduct = info.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
  
   const click = () => {
 
@@ -99,8 +99,13 @@ function App() {
         <Button variant="outline" radius="md" onClick={click}>Oluştur</Button>
       </Stack>
 
+      <Input.Wrapper>
+          <Input placeholder= 'Aradığınız ürün' value = {filteredText} onChange={(e) => setFilteredText(e.target.value)}/>
+      </Input.Wrapper>
+
+
       <SimpleGrid cols={3} spacing="xs" verticalSpacing="xs">
-        {list.map(({product,price,src},id) => (
+        {filtredProduct.map(({product,price,src},id) => (
           <CardComponents 
           key={id} 
           src = {src}
@@ -111,28 +116,6 @@ function App() {
           }}/>
         ))}
       </SimpleGrid>
-      <Input.Wrapper label="Arama">
-          <Input placeholder= 'Aradığınız ürün' value = {filteredText} onChange={(e) => setFilteredText(e.target.value)}/>
-      </Input.Wrapper>
-      <List
-      className='List'
-      spacing="xs"
-      size="sm"
-      center
-      icon={
-        <ThemeIcon color="teal" size={24} radius="xl">
-          <IconCircleCheck size="1rem" />
-        </ThemeIcon>
-      }
-    >
-
-      {filtredBasket.map(({product},id) => (
-        <List.Item key={id} >{product}</List.Item>
-      ))}
-      
-      
-    </List>
-
     </Container>
     
   )
