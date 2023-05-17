@@ -1,8 +1,8 @@
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Card, Image, Text, CloseButton, Button, Group } from '@mantine/core';
 
 
+const CardComponents = ({product, price, addBasket,click, src}) => {
 
-const CardComponents = ({product, price, addBasket, src}) => {
 
     return(
         <Card className='Cards' shadow="sm" padding="lg" radius="md" withBorder>
@@ -16,6 +16,9 @@ const CardComponents = ({product, price, addBasket, src}) => {
             <Group position="apart" mt="md" mb="xs">
 
                <Text>{product}</Text>
+
+               <CloseButton aria-label="Close modal" onClick={click}/>
+
 
             </Group>
 

@@ -9,6 +9,7 @@ function App() {
 
   let info = [
     {
+
       product: "Bisiklet",
       src: "cycle.jpg",
       price: "25000TL"
@@ -105,10 +106,14 @@ function App() {
           src = {src}
           price = {price} 
           product = {product} 
+          click={() => {
+            let copyList = [...list];
+            copyList.splice( id , 1 );
+            setList(copyList);
+          }}
           addBasket = {() => {
             setBasketItems([...basketItems,{product}])
           }}/>
-
         ))}
       </SimpleGrid>
     </Container>
