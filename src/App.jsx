@@ -1,5 +1,6 @@
-import { Container, Input, Textarea, Button, Stack, Grid } from '@mantine/core';
+import { Container, Input, List,Flex, ThemeIcon, Textarea, Button, Stack,Group, SimpleGrid } from '@mantine/core';
 import { useState } from 'react';
+import { IconCircleCheck, IconCircleDashed } from '@tabler/icons-react';
 import CardComponents from './components/Card';
 import './index.css'
 
@@ -8,23 +9,52 @@ function App() {
 
   let info = [
     {
-      product: "birinci",
-      price: "örnek paragraf 1"
+      product: "Bisiklet",
+      src: "cycle.jpg",
+      price: "25000TL"
     },
 
     {
-      product: "ikinci",
-      price: "örnek paragraf 2"
+      product: "Güneş Gözlüğü",
+      src: "glasses.jpg",
+      price: "12000TL"
     },
 
     {
-      product: "üçüncü",
-      price: "örnek paragraf 3"
+      product: "Spor Ayakkabı",
+      src: "shoes.jpg",
+      price: "32000TL"
     },
 
     {
-      product: "dördüncü",
-      price: "örnek paragraf 4"
+      product: "Akıllı Kol Saati",
+      src: "watch.jpg",
+      price: "1500TL"
+    },
+
+    
+    {
+      product: "Kablosuz Mouse",
+      src: "mouse.jpg",
+      price: "900TL"
+    },
+    
+    {
+      product: "Atari",
+      src: "atari.jpg",
+      price: "1000TL"
+    },
+
+    {
+      product: "Akıllı Telefon",
+      src: "phone.jpg",
+      price: "15000TL"
+    },
+    
+    {
+      product: "Kablosuz Kulaklık",
+      src: "headphone.jpg",
+      price: "4500TL"
     }
 
   ];
@@ -32,7 +62,14 @@ function App() {
   const [list, setList] = useState(info);
   const [title, setTitle] = useState("");
   const [paragraph, setParagraph] = useState("");
- 
+  const [filteredText, setFilteredText] = useState("");
+  const [basketItems, setBasketItems] = useState([]);
+  
+
+  //burada basketItems'den gelen product'ın karakterlerini küçülttük. ancak bunu inputta aradığımız metnin kendisini de küçültmemiz lazım yoksa sepete ekledğimiz ilk harfi büyük olan ürünleri göstermez.
+  
+  let filtredProduct = info.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
+  
   const click = () => {
 
     setTitle("");
@@ -54,20 +91,26 @@ function App() {
 
   return (
     <Container>
-      <Stack>
-        <Input.Wrapper label="Başlık">
-          <Input placeholder= 'Başlık giriniz' value = {title} onChange={(e) => setTitle(e.target.value)}/>
-        </Input.Wrapper>
-        
-        <Textarea placeholder="Your comment" label="Açıklama giriniz" value = {paragraph} onChange={(e) => setParagraph(e.target.value)}/>
-        <Button variant="outline" radius="md" onClick={click}>Oluştur</Button>
-      </Stack>
+      <Group align='end'>
+      <Input.Wrapper label="Arama" >
+          <Input placeholder= 'Aradığınız ürün' value = {filteredText} onChange={(e) => setFilteredText(e.target.value)}/>
+      </Input.Wrapper>
+      <Button onClick={() => setFilteredText("")} >Clear</Button>
+    </Group>
 
-      <Grid>
-        {list.map(({product,price}) => (
-          <CardComponents price = {price} product = {product} />
+      <SimpleGrid cols={3} spacing="xs" verticalSpacing="xs">
+        {filtredProduct.map(({product,price,src},id) => (
+          <CardComponents 
+          key={id} 
+          src = {src}
+          price = {price} 
+          product = {product} 
+          addBasket = {() => {
+            setBasketItems([...basketItems,{product}])
+          }}/>
+
         ))}
-      </Grid>
+      </SimpleGrid>
     </Container>
     
   )
