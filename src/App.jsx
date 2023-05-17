@@ -1,4 +1,4 @@
-import { Container, Input, List, ThemeIcon, Textarea, Button, Stack, SimpleGrid } from '@mantine/core';
+import { Container, Input, List,Flex, ThemeIcon, Textarea, Button, Stack,Group, SimpleGrid } from '@mantine/core';
 import { useState } from 'react';
 import { IconCircleCheck, IconCircleDashed } from '@tabler/icons-react';
 import CardComponents from './components/Card';
@@ -64,11 +64,12 @@ function App() {
   const [paragraph, setParagraph] = useState("");
   const [filteredText, setFilteredText] = useState("");
   const [basketItems, setBasketItems] = useState([]);
+  
 
   //burada basketItems'den gelen product'ın karakterlerini küçülttük. ancak bunu inputta aradığımız metnin kendisini de küçültmemiz lazım yoksa sepete ekledğimiz ilk harfi büyük olan ürünleri göstermez.
   
   let filtredProduct = info.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
- 
+  
   const click = () => {
 
     setTitle("");
@@ -90,18 +91,13 @@ function App() {
 
   return (
     <Container>
-      <Stack>
-        <Input.Wrapper label="Başlık">
-          <Input placeholder= 'Başlık giriniz' value = {title} onChange={(e) => setTitle(e.target.value)}/>
-        </Input.Wrapper>
-        
-        <Textarea placeholder="Your comment" label="Açıklama giriniz" value = {paragraph} onChange={(e) => setParagraph(e.target.value)}/>
-        <Button variant="outline" radius="md" onClick={click}>Oluştur</Button>
-      </Stack>
-
-      <Input.Wrapper>
+      <Group align='end'>
+      <Input.Wrapper label="Arama" >
           <Input placeholder= 'Aradığınız ürün' value = {filteredText} onChange={(e) => setFilteredText(e.target.value)}/>
       </Input.Wrapper>
+      <Button onClick={() => setFilteredText("")} >Clear</Button>
+    </Group>
+      
 
 
       <SimpleGrid cols={3} spacing="xs" verticalSpacing="xs">
