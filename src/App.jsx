@@ -65,30 +65,13 @@ function App() {
   const [paragraph, setParagraph] = useState("");
   const [filteredText, setFilteredText] = useState("");
   const [basketItems, setBasketItems] = useState([]);
+  let copyList = [...list];
   
 
   //burada basketItems'den gelen product'ın karakterlerini küçülttük. ancak bunu inputta aradığımız metnin kendisini de küçültmemiz lazım yoksa sepete ekledğimiz ilk harfi büyük olan ürünleri göstermez.
   
-  let filtredProduct = info.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
-  
-  const click = () => {
+  let filtredProduct = copyList.filter((item) => item.product.toLowerCase().indexOf(filteredText.toLowerCase()) >= 0);
 
-    setTitle("");
-
-    setParagraph("");
-
-    const copyList = [...list];
-
-    copyList.push({
-
-      product: title,
-      
-      price: paragraph
-
-    })
-
-    setList(copyList)
-  }
 
   return (
     <Container>
@@ -107,9 +90,10 @@ function App() {
           price = {price} 
           product = {product} 
           click={() => {
-            let copyList = [...list];
+            
             copyList.splice( id , 1 );
             setList(copyList);
+
           }}
           addBasket = {() => {
             setBasketItems([...basketItems,{product}])
